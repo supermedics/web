@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       
+        .table{
+            
+            display: grid;
+            grid-template-areas: 
+            "head head head"
+            "side contents ."
+            ". footer ."            
+            ;
+            grid-template-columns: 1fr 3fr 1fr;
+            
+
+        }
+        .head{
+            grid-area: head;
+            text-align: center;
+            padding:30px;            
+            margin: 0 0 0 0;
+            background-color: skyblue;
+    
+        }
+        .side{
+            grid-area: side;
+            background-color: antiquewhite;
+            
+        }
+        .contents{
+            grid-area: contents;
+            background-color: beige;
+            padding: 10px;
+            height: fit-content;
+        }
+        .footer{
+            grid-area: footer;
+            height: 50px;
+            background-color: blanchedalmond;
+        }
+        h3 { text-align: left;}
+        input{ margin-left: 20px;}
+    </style>
+    <title>Subcribe</title>
+</head>
+<body>
+      
+    <div class="table">
+        <h2 class="head">회원가입</h2>
+            <div class="side">            </div>   
+            <div class="contents">
+                
+                <span>
+                    <h3>아이디: </h3>
+                    <input maxlength="20" type="text" id="uid" class="form-control" required onkeyup="chkID()">
+                    
+                </span>
+                <span id="uids" style="color: red; display:none"> 5~20자의 영문 소문자, 
+                    숫자와 특수기호(_),(-)만 사용 가능합니다.</span>
+                <span id="uidg" style="color: green; display: none">
+                        멋진 아이디네요!
+                </span>
+
+                 <span>
+            
+               <h3>패스워드 :</h3>
+            <input type="password" id="pw" maxlength="16" class="form-control" required onkeyup="chkpw()"></span>
+            <span id="pws" style="color: red; display: none">
+                8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
+            </span>
+            
+            
+            <span>
+            <h3>패스워드 확인</h3>
+            <input type="password" id="cpw" required onkeyup="chkcpw()" maxlength="16"></span>
+            <span id="pwschk" style="color: red; display: none">
+                비밀번호가 일치하지 않습니다.
+            </span>
+            <span id="pwsblank" style="color: red; display: none">
+                비어 있습니다
+            </span>
+            
+            <h3 >이름: </h3>
+            <span><input type="text" id="name"></span>
+
+            <span>
+            <h3>생일: </h3>
+            <input type=text id="birth" maxlength="6" placeholder="생년월일6자리">
+            </span>
+        <div >
+            <h3>주 소: </h3>        
+            <input class="form-control" type="text" id="addr"
+                onclick="postcode()" value="주소찾기" readonly>              
+            <span id="addre">
+                필수 정보 입니다.
+            </span>
+        </div>
+            
+            <h3>이메일: </h3>
+            <input type="email" class="form-cntrol" id="email" onkeyup="chkemail()">
+            <span id="gemail" style="display: none;"> 올바른 이메일 형식입니다. </span>
+            <span id="emails" style="display: none;"> 필수 정보 입니다. </span>
+            
+
+            <h3>성별</h3>
+            <span><select name="sex" id="sex" >
+                    <option value="Male">남자</option>
+                    <option value="female">여자</option>
+                    <option value="noselect">기타</option>
+                </select>
+            </span>
+        
+        
+                
+        
+        <div class="side"></div>
+    
+    
+<div class="footer">
+    <button class="btn btn-lg btn btn-primary" style="width: 100%;" onclick="">가입하기</button>
+</div>
+    
+</body>
+</html>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
+    
+</script>
+<script>
+    let uid  = document.querySelector("#uid");
+    let pw  = document.querySelector("#pw");
+    let cpw  = document.querySelector("#cpw");
+    let name  = document.querySelector("#name");
+    let adrr  = document.querySelector("#addr");
+    let birth = document.querySelector("#birth");
+    let sex  = document.querySelector("#sex");
+    let email  = document.querySelector("#email");
+    
+    function postcode() {
+        new daum.Postcode({
+        oncomplete: function(data) {
+            document.querySelector("#addr").value= data["address"];
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+            document.querySelector("#addre").style.display="none";
+        }
+        }).open();
+    }
+    
+    function getData(){
+        if(chkID()){            
+        } else{
+            uid.focus();
+            return false;
+        }
+        if(chkpw()){
+        } else{
+            pw.focus();
+            return false;
+        };
+        if(chkcpw()){
+        } else{
+            cpw.focus();
+            return false;
+        }
+        if(chkname()){
+        } else{
+            name.focus();
+            return false;
+        }
+        if(chaddr()){
+        } else{
+            addr.focus();
+            return false;
+        }
+        if(chkbrith()){
+        } else{
+            birth.focus();
+            return false;
+        }
+        if(chkemail()){
+        } else{
+            email.focus();
+            return false;
+        }
+      
+    }
+    function chkID(){
+
+        var idRE = /^[a-zA-z0-9]{5,10}$/;
+        
+        if (idRE.test(uid.value)){
+            console.log("통과");
+            // 아이디가 유효할때 good 나타내고, s는 사라지게
+            document.querySelector("#uidg").style.display = "block";
+            document.querySelector("#uids").style.display = "none";    
+            return true  ;      
+        } else {
+            console.log("ㄴ통과");
+            document.querySelector("#uids").style.display = "block";
+            document.querySelector("#uidg").style.display = "none";
+            return false;
+        }        
+    }
+    function chkpw(){
+        var pwRE = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+    
+        if (pwRE.test(pw.value))
+            {
+                console.log("알맞아요");
+                document.querySelector("#pws").style.display="none";
+                return true;
+            }
+            else
+            {
+                document.querySelector("#pws").style.display="block";
+                return false;
+            }
+        
+    }
+   
+    function chkcpw(){
+        if (pw.value == cpw.value){
+            if (cpw.value==""){
+                console.log("같고 공백")
+                document.querySelector("#pwsblank").style.display= "block";
+                cpw.focus();
+                return false;
+            }
+             else
+            {
+                console.log("같고 공백아님")
+                document.querySelector("#pwsblank").style.display= "none";
+                document.querySelector("#pwschk").style.display= "none";
+                return true;
+            }
+        
+        } else {
+            if(cpw.value!= ""){
+                console.log("다른데 공백아님")
+            document.querySelector("#pwsblank").style.display="none";
+            document.querySelector("#pwschk").style.display="block";
+            cpw.focus();
+            return false;
+            } else {
+            console.log("다른데 공백");
+            document.querySelector("#pwsblank").style.display="block";
+            document.querySelector("#pwschk").style.display="none";
+            cpw.focus();
+            return false;
+            }
+
+        }
+            
+    
+    }
+    
+    function chkname(){
+        if( name.value){
+            document.querySelector("#name").style.display="none";
+        }else{
+            document.querySelector("#pwschk").style.display="block";
+        }
+    }
+    function chkbrith(){
+        var birthRE= /^([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))$/;
+        if(birthRE.test(birth.value)){
+            document.querySelector("#births").style.display ="none";
+            return true;
+        } else {
+            document.querySelector("#births").style.display ="block";
+            birth.focus();
+            return false;
+        }
+    }
+        
+    function chkemail() {
+        var emailRE = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        //대문자 소문자 숫자로 시작하여 -_.을 넣을 수 있고 
+        if(emailRE.test(email.value)) {        
+            console.log("올바른 메일")    
+            document.querySelector("#gemail").style.display = "block";
+            document.querySelector("#emails").style.display = "none";              
+            return true;
+        } else {            
+            document.querySelector("#emails").style.display = "block";            
+            email.focus();
+            return false; 
+        }   
+    }
+
+
+    
+
+  </script>

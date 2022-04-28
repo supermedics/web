@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .title{
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
+            padding: 20px;
+            background-color: antiquewhite;
+            margin: 0%;
+            display: flex;
+            flex-direction: column;
+        }
+        .subtitle{
+            text-align: center;
+            background-color: aquamarine;
+            margin: 0%;
+            font-size: large;
+            font-weight: 900;
+            padding: 0px;
+        }
+        .wrap {
+            padding: 20px 10px;
+
+            display: flex;
+           
+            gap: 10px;
+            height: 200px;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            background-color: blanchedalmond;
+            
+        }
+        .text{
+            font-size: 50px;
+            font-weight: bold;
+            line-height: 100px;
+        }
+        /* .line{
+        
+            background-color: white;
+            width: 20px;
+        } */
+        .ball{
+            display: flex;
+            flex-wrap: wrap;
+            border-radius: 10%;
+            background-color: darkgray;
+            padding: 10px;
+        }
+        .number {
+            
+            display: block;
+            flex-grow: auto;
+            border-radius: 50%;
+            
+            width: 100px;
+            height: auto;
+            
+            font-size: 50px;
+            line-height: 100px;
+            text-align: center;
+            font-weight: bolder;
+
+            background-color:darkorange;
+            
+        }
+        .footer{
+            background-color: gray;
+            text-align: center;
+
+        }
+        ul>li{
+            list-style: none;
+            padding: 10px
+        }
+        .matching{
+            display: flex;
+            
+        }
+        .custom_number{
+            padding: 10px;
+            width: 800px;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            text-align: center;
+            justify-content: center;
+
+        }
+        .custom{
+            width: 30px;
+            height: 30px;
+            
+        }
+        .bonus_value{
+            width: 30px;
+            height: 30px;
+        }
+        .buttons{
+            margin: 0,auto;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="Menu">
+    
+</div>    
+<div class="Rusult">
+    <div class="title">대박기원
+    <div class="subtitle">1등당첨금 <strong style="color:red">1 만원</strong><br>
+    200 당첨 번호</div>
+    </div>
+    <div class="wrap">
+        <div class="ball" id="main">
+            <span class="number" id="yellow">0</span>
+            <span class="number" id="red">0</span>
+            <span class="number" id="green">0</span>
+            <span class="number" id="lime">0</span>
+            <span class="number" id="green">0</span>
+            <span class="number" id="red">0</span>
+        </div>
+            <span class="text">+</span>
+        <div class="ball" >
+            <span class="number">0</span>
+        </div>
+    </div>
+</div>
+<div>
+    
+</div>
+<div class="footer" >
+    <ul>
+        <li><button class="btn btn-primary btn-lg" id="button" onclick="makeNumber()">번호 생성</button></li>
+        <li><button class="btn btn-primary btn-lg" id="button2" onclick="makeNumber2()">번호 생성2</button></li>
+</ul>
+
+</div>
+<div class="matching">
+    <div class="custom_number">
+    <span><input type="text" class="custom" maxlength="2"></span>
+    <span><input type="text" class="custom" maxlength="2"></span>
+    <span><input type="text" class="custom" maxlength="2"></span>
+    <span><input type="text" class="custom" maxlength="2"></span>
+    <span><input type="text" class="custom" maxlength="2"></span>
+    <span><input type="text" class="custom" maxlength="2"></span>
+    <span style="font-size: large;">+</span>
+    <span><input type="text" class="bonus_value" maxlength="2"></span>
+    <span><input type="button" onclick="checkResult()" value="값입력" style="height:30px;background-color: aqua;"></span>
+
+    </div>
+    <span><input type="button" class="buttons" onclick="autoinput()" value="자동" style="height:30px;background-color: aqua;"></span>
+</div>
+<span><input type="button" class="buttions" onclick="winner_3th()" value="3등" style="height:30px;background-color: aqua;"></span>
+</div>
+<div id="auto">
+
+</div>
+
+</body>
+</html>
+<script>
+    var numberlist=[];
+    var bonus;
+    //전역함수
+    for(var i=1;i<46;i++){
+        numberlist.push(i);
+    }
+    
+    
+    function makeNumber()
+    {
+        numberlist.sort(() => Math.random() - 0.5)
+        //console.log(numberlist) 
+        var lottonumber = numberlist.slice(0,7);
+        var bonus=lottonumber.pop();
+        lottonumber.sort((a,b)=>a-b);
+        console.log(lottonumber);
+        console.log(bonus);
+
+        var number = document.querySelectorAll(".number");
+
+        for(var i=0; i<7 ; i++) {            
+            if(i==6) {
+                number[i].innerText = bonus;
+
+                if (bonus<10){
+                number[i].style.backgroundColor="yellow";
+                
+                }
+                else if (bonus<20){
+                    number[i].style.backgroundColor="skyblue"
+                }
+                else if (bonus<30){
+                    number[i].style.backgroundColor="red"
+                }
+                else if (bonus<40){
+                    number[i].style.backgroundColor="blue"
+                }
+            
+            } else {
+                number[i].innerText = lottonumber[i];
+                
+                if (lottonumber[i]<10){
+                number[i].style.backgroundColor="yellow";
+                
+                }
+                else if (lottonumber[i]<20){
+                    number[i].style.backgroundColor="skyblue"
+                }
+                else if (lottonumber[i]<30){
+                    number[i].style.backgroundColor="red"
+                }
+                else if (lottonumber[i]<40){
+                    number[i].style.backgroundColor="blue"
+                }
+                
+               
+            }
+        }
+        
+        
+        
+    }
+    
+
+    function makeNumber2() {
+        numberlist2 = [];
+        // Math.random() 0~1 으로 1~45 사이의 숫자를 만드려면
+        // random에서 45 곱해주고 , 버림해주고 , + 1        
+        for(var i=0; i<7; i++) {
+            // 랜덤숫자 생성
+            var number2 = Math.floor(Math.random() * 44) + 1;
+            // 리스트에 number2가 존재하면 number2를 다시생성
+            for(var j in numberlist2) {
+                // 생성된 숫자가 리스트에 이미 있으면
+                while (true) {
+                    if (numberlist2[j] == number2) {
+                    // 숫자를 다시생성
+                        number2 = Math.floor(Math.random() * 44) + 1;                                        
+                    } else {
+                        break;
+                    }
+                }
+
+            }
+            // 리스트에 생성된 숫자를 푸시.
+            numberlist2.push(number2);
+        }
+        var bonus = numberlist2.pop()        
+        numberlist2.sort((a,b) => a-b);
+        console.log("6개 리스트" , numberlist2);
+        console.log("보너스" , bonus);
+        
+        var number = document.querySelectorAll(".number");
+
+        for(var i=0; i<7 ; i++) {            
+            if(i==6) {
+                number[i].innerText = bonus;
+
+                if (bonus<10){
+                number[i].style.backgroundColor="yellow";
+                
+                }
+                else if (bonus<20){
+                    number[i].style.backgroundColor="skyblue"
+                }
+                else if (bonus<30){
+                    number[i].style.backgroundColor="red"
+                }
+                else if (bonus<40){
+                    number[i].style.backgroundColor="blue"
+                }
+            
+            } else {
+                number[i].innerText = numberlist2[i];
+                
+                if (numberlist2[i]<10){
+                number[i].style.backgroundColor="yellow";
+                
+                }
+                else if (numberlist2[i]<20){
+                    number[i].style.backgroundColor="skyblue"
+                }
+                else if (numberlist2[i]<30){
+                    number[i].style.backgroundColor="red"
+                }
+                else if (numberlist2[i]<40){
+                    number[i].style.backgroundColor="blue"
+                }
+                
+               
+            }
+        }
+       
+    }
+    
+    
+    
+
+function  checkResult(){
+        var customnumberlist=[];
+        var customnumber= document.querySelectorAll('.custom');
+        
+        for(var i=0; i<6;i++){
+            customnumberlist.push(customnumber[i].value);
+        }
+
+        var sameCnt=0;
+        for(var j=0;j<6;j++){
+            
+            customnumberlist.find( function(value){
+                if(numberlist[j] == value){
+                    sameCnt++;
+                }
+            })
+        }     
+        var bonusChk = false;
+        customnumberlist.find(function (value){
+            if(bonus == value){
+                bonusChk = true;
+            }
+        })
+        console.log("당첨숫자" + numberlist);
+        console.log("같은 숫자개수" + sameCnt);
+        if (sameCnt == 3) {
+            console.log("축하합니다. 5등에 당첨되었습니다.");
+        } else if (sameCnt == 4) {
+            console.log("축하합니다. 4등에 당첨되었습니다.");
+        } else if (sameCnt == 5) {
+            if (bonusChk) {
+                console.log("축하합니다. 2등에 당첨되었습니다.");    
+            } else {
+                console.log("축하합니다. 3등에 당첨되었습니다.");
+            }            
+        }
+        else if (sameCnt == 6) {
+            console.log("축하합니다. 1등에 당첨되었습니다.");
+        } else {
+            console.log("안타깝지만, 다음기회에!^^!");
+        }
+        
+    }
+
+function autoinput(){
+    
+    var numberlist=[];
+    
+    for(var i=1;i<46;i++){
+        numberlist.push(i);
+    }
+    
+    numberlist.sort(() => Math.random()-0.5)
+    var lottonumber = numberlist.slice(0,7);
+    //console.log(lottonumber);
+    document.querySelector("#auto").style.diplay="block";
+    var autoItem= document.createElement("li");
+    autoItem.innerText = lottonumber;
+    document.querySelector("#auto").appendChild(autoItem);
+    
+}
+
+function winner_3th(){
+
+    var numberlist=[]
+    for (var i=1;i<46;i++){
+        numberlist.push(i);
+    }
+    numberlist.sort(() => Math.random()-0.5)
+    var lottonumber= numberlist.slice(0,7);
+    console.log(lottonumber);
+    
+    
+
+
+}
+</script>

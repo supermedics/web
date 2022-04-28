@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <title>home</title>
+</head>
+<style>
+    html,
+    body{
+        scroll-behavior: smooth;
+        font-family: 'Noto Sans KR', sans-serif;       
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+    header{
+        z-index: 10000;
+        width:100%;
+        background-color: mediumslateblue;
+        display: flex;
+        margin: 0;
+        height: 3em;
+        justify-content:right;
+        align-items:center;
+        position: fixed;
+    }
+    #title{
+        margin: 0;
+        position: fixed;
+        left: 10px;
+        color: antiquewhite;
+    }
+    .menu{
+        font-size: larger;
+        font-weight: bold;
+        margin-right: 30px;
+        justify-content: space-around;
+      
+    }
+    .menu>a{
+        text-decoration: none;
+        color:gold;
+        padding: 5px;          
+    }
+    
+    .hmenu:hover{
+        font-size:x-large;
+        transition: width 0.5s;
+    }
+    section{
+        width:100%;
+        min-height: 100%;
+        padding: 0;
+        margin: 0;
+        font-size: 0px;
+        position: relative;
+        display:flex;
+        
+    }
+    section p{
+        color: azure;
+        font-size: 20vh;
+        padding: 0;
+        margin: 0 ;
+        animation-duration:3s ;        
+        animation-name: slidein;
+        animation-fill-mode: forwards;
+       }
+    @keyframes slidein {
+        from {
+            margin-left: 0%;
+            opacity: 0;
+        }
+        to {
+            margin-left: 10%;
+            opacity: 100%;
+        }}
+
+        
+    #intro{
+        
+        align-items: center;
+        background: rgb(131,58,180);
+        background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+        overflow: hidden;
+    }
+    
+    #one{
+        
+        align-items: center;
+        background-color: rgba(131,58,180,1);
+        overflow: hidden;
+    }
+    
+    
+    #two{   
+        align-items: center;
+        background-color: rgba(253,29,29,1);
+        overflow: hidden;
+    }
+    
+
+    #three{
+        
+        align-items: center;
+        background-color: rgba(252,176,69,1);
+        overflow: hidden;
+    }
+    .item{
+        flex: 1 1 40%;
+    }
+    
+    #left{
+        width: 50%;
+        justify-items: left;
+    }
+    #right{
+        
+        display: flex;
+        align-items: center;
+        justify-items: right;
+        justify-content: center;
+        
+        /* width: auto; */
+        height: 500px;
+        margin: 0 auto;        
+    }
+    .photo {
+        flex-grow: 1;
+        width: 100%; 
+        height: 100vh;
+        object-fit: cover;
+        background: url(./img/Nature.jpg) no-repeat 0 0 / auto 11got00px; 
+        animation: rainbow-ani 20s infinite linear ;
+	}
+        @keyframes rainbow-ani { 100% { background-position: -2063px 0; } }
+    .text{
+        all:unset;
+        position: absolute;
+        color:gainsboro;
+        font-size: 5vh;
+        text-align: center;
+        width: 400px;
+        
+        font-weight: bold;
+        
+    
+    }
+    
+    </style>
+
+    
+<body>
+    <header>
+        <h3 id="title">Wilde web</h3>
+      
+        <div class="menu">
+            <a class="hmenu" href="#intro">소개</a>
+            <a class="hmenu" href="#one">포트폴리오</a>
+            <a class="hmenu" href="#two">자료실 </a>
+            <a class="hmenu" href="#three">연락처</a>
+        </div>
+    </header>
+   
+    <section  id="intro">
+        <div class="item" id="left"><p >intro</p></div>
+        
+        <div class="item" id="right">
+            <div class="photo"></div>
+            <span class="text">"우리가 자연을 <br>
+                지켜야 합니다.<br> 
+                그래야만 <br>자연이 우리를 지켜줄 것입니다.''
+            </span>
+            
+        </div>
+    </section>
+    <section id="one">
+        <p>1</p>
+    </section>
+    <section id="two">
+        <p>2</p>
+
+    </section>
+    <section id="three">
+        <p>3</p>
+
+    </section>
+
+    
+
+    
+</body>
+</html>

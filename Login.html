@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr ;
+            grid-template-rows: repeat(3, minmax(100px, auto));
+            grid-template-areas: 
+            "header header header"
+            "left login right"
+            "footer footer footer"
+            ;
+        }
+        .header{
+            grid-area: header;
+            background-color: skyblue;
+        }
+        .left{ 
+            grid-area: left;
+            background-color: beige;
+            height: 100px;
+        }
+        .login{
+            
+            grid-area: login;
+            background-color: beige;
+            text-align: center;
+            align-items: center;
+        }
+        .right{
+            grid-area: right;
+            background-color: beige;
+        }
+        .footer{
+            grid-area: footer;
+            background-color: coral;
+        }
+
+    </style>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container" >
+        <div class="header"></div>
+        <div class="left"></div>
+        <div class="login">
+            <fieldset>
+                <label for="login">ID</label>
+                <input name="login" type="text">
+                <label for="pw">PW</label>
+                <input name="login" type="password">
+                <input type="button" value="Send" onclick="login()">
+                <label type="text"><a href="subscribe.html">회원가입</a></label>
+            </fieldset>
+        </div>
+        <div class="right"> </div>
+        <div class="footer"></div>
+    </div>
+    
+</body>
+</html>
+<script type="text/javascript">
+    alert("반갑습니다")
+console.log('방갑습니다');
+function login(){
+    var id =document.querySelector(input[name='id']).value;
+    var id =document.querySelector(input[name='id']).value;
+    console.log(id);
+    console.log(pw);
+    alert("환영합니다.");
+}
+</script>
