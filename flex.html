@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex
+
+    </title>
+    
+    <style>
+        .con{
+            
+            background-color: aqua;
+            display: flex;
+            flex-direction: row;
+            
+
+        }
+        .item{
+            width: 100px;
+            height: 100px;
+            background-color: chocolate;
+            margin: 0px 5px;
+            /* padding: 10px; */
+            flex: auto;
+        }
+
+        .item:hover
+        {
+            background-color: blueviolet;
+
+        }
+        .item:nth-child(1)
+        {
+         flex-grow: 10%;
+        }
+        .item:nth-child(2)
+        {
+            flex-grow: 50%
+        
+        }.item:nth-child(3)
+        {
+            flex-grow: 0;
+            flex-shrink: 1;
+        }.item:nth-child(4)
+        {
+            flex-grow: 0;
+            flex-shrink: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <div class="item"><a href="" img="">배너</a></div>
+        <div class="item"><a href="">ㄴ</a> </div>
+        <div class="item"><a href="">3</a></div>
+        <div class="item"><a href="">4</a></div>
+        <div class="item"><a href="">5</a></div>
+    </div>
+    <div class="contents"
+    
+    ></div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+    <style>
+        .container{
+            display: grid;
+            gap: 10px;
+            grid-template-columns: 200px auto 300px;
+            grid-template-areas:
+		    "header header header"
+		    "side main main"
+		    ". . ."
+		    "footer footer footer";
+            grid-template-rows: repeat(4, minmax(100px, auto));
+                   
+        }
+        .header{
+            grid-area: header;
+            background-color: aquamarine;
+            /* grid-column: 1 / 4; */
+        }
+        .side{
+            grid-area: side;
+            background-color: beige;
+            
+        }
+        .side>ul>li{
+            background-color: brown;
+            list-style: none;
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+
+        }
+        .side>ul>li:hover{
+            background-color: blue;
+            display:on;
+            transition: 1s;
+        }
+        .side>ul>li{
+            display: none;
+            color: white;
+            text-decoration: none;
+        }
+        
+       
+        .contents{
+            grid-area: main;
+            background-color: blueviolet;
+        }
+        .footer{
+            grid-area: footer;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">헤더  </div>
+        <div class="side">
+            <ul>
+                            
+                    <li><a href="">인사</a></li>
+                    <li><a href="">소개</a></li>
+                    <li><a href="">가맹점</a></li>
+                    <li><a href="">연락처</a></li>
+                
+            </ul>
+
+        </div>
+        <div class="contents">컨텐츠 </div>
+        <div class="footer">풋터 </div>
+        
+
+    </div>
+    
+</body>
+</html>
