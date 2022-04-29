@@ -10,7 +10,9 @@
     <title>home</title>
 </head>
 <style>
-    html,
+    /* html {
+
+    } */
     body{
         scroll-behavior: smooth;
         font-family: 'Noto Sans KR', sans-serif;       
@@ -58,7 +60,7 @@
         min-height: 100%;
         padding: 0;
         margin: 0;
-        font-size: 0px;
+        /* font-size: 0px; */
         position: relative;
         display:flex;
         
@@ -130,7 +132,6 @@
         overflow: hidden;
         width: 50%;
         height: 100vh;
-        gap:10px;
         flex-wrap:wrap;
     
     }
@@ -163,25 +164,33 @@
     }
 
     button{
-        
+        margin: 10px;
         padding: 5px 5px;
         font-size: large;
         font-weight: bold;
     }
-    .right table{
+    /* .right table{
         all:unset;
-        
+        color: #000;
         height: auto;
         width: 300px;
         height: 200px;
         /* border:1px solid black; */
         
-    }
-    .table li{
+    
+    .table >li{
+        margin-top: 10px;
+        font-size: larger;
         height: auto;
         color: #000;
     }
-    
+    .link>a{
+        font-size: larger;
+        text-decoration:none ;
+        gap: 10px;
+        color: blue;
+    }
+     
     </style>
 
     
@@ -223,15 +232,23 @@
             <h3>남기고 싶은 말을 적어 주세요</h3>
             <div><textarea name="memo" id="memo" cols="90" rows="20"></textarea></div>
             <div><button>저장</button></div>
-        <table>
-            <ul > 
+            <ul style="list-style: none;margin: 0;padding: 0;"> 
                 <li>전화번호: 010-0000-0000</li>
                 <li>주소: 부산시 해운대구</li>
             </ul>
-        </table>    
+            <div class="link" >
+                <a href="">facebook</a>
+                <a href="">twitter</a>
+                <a href="">instagram</a>
+                <a href="">youtube</a>
+            </div>
+ 
         </div>
 
     </section>
+    <footer>
+
+    </footer>
 
     
 
