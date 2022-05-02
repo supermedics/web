@@ -213,7 +213,8 @@
         flex-direction: column; */
     }
     #list li{
-        text-align:left
+        text-align:left;
+        border-bottom: #fff solid  1px;
     }
     </style>
 
@@ -255,7 +256,8 @@
             <!-- onkeyup 속성안에 js 코드를 넣어줌 -->
                 <input type="text" id="item" onkeyup="if(window.event.keyCode==13){addItem()}">
                 <button onclick="addItem()">추가</button>
-                <ul id="todolist">
+                <ul id="todolist" style="border-top: #fff solid 1px;">
+                    
                 </ul>
         </div>
         </div>
@@ -289,6 +291,7 @@
 </body>
 </html>
 <script>
+     var count=0;
     function addItem() {        
         // input value 를 todo변수에 저장
         
@@ -300,10 +303,10 @@
        
             if(todo==""){
             alert("내용이 없습니다.");
-            }
-        // alert(todo);
-            else {    
-            // input에 있는 할일을 li태그 안에 넣어줌
+            } else if (count>=9){
+                alert("가득 찼습니다.");
+            }else{
+                // input에 있는 할일을 li태그 안에 넣어줌
                 listitem.innerText = todo;
             // 만들어진 할일(아이템)을 ul태그의 자식으로 append
                 list.appendChild(listitem);
@@ -317,7 +320,10 @@
                     list.removeChild(pnode);
                 }
                 listitem.appendChild(xbtn);
-            }
+                count++;                
+            }    
+            
+            
             
    
     
