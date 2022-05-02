@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>odd&even</title>
+    <style>
+        header{
+            text-align: center;
+        }
+        .bett{
+            margin: 5px;
+            height: 40px;
+        }
+        .bett button{
+            padding: 2px,0;
+        }
+        .container{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 10px; 
+            
+        }
+        .button{
+            text-align: center;
+            justify-content: center;
+            border: 1px solid black;
+            height: 100px;
+            width: 100px;
+            
+        }
+        .button:hover{
+            filter: blur(1px);
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h2>홀짝게임</h2>
+        <input type="number" id="bett" class="bett" maxlength="1000000"><button value="베팅" class="bett">베팅</button>
+        <h3 class="choice">선택하세요</h3>
+    </header>
+    <section class="container">
+        <button class="button" id="odd" onclick="">홀</button>
+        <button class="button" id="even" onclick="">짝</button>
+    </section>
+</body>
+</html>
