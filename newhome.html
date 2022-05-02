@@ -145,7 +145,7 @@
     }
     .right h3{
         font-size: x-large;
-        color:darkslategrey
+        color:rgba(10, 170, 130, 0.89)
     }
     
     .photo {
@@ -192,7 +192,7 @@
         gap: 10px;
         color: blue;
     }
-     .sns{
+    .sns{
          height: 50px;
          width: 50px;
          margin: 20px;
@@ -205,6 +205,15 @@
      }
     #list input{
         width: 200px;
+    }
+    #list
+    {
+        text-align: center;
+        /* display: flex;
+        flex-direction: column; */
+    }
+    #list li{
+        text-align:left
     }
     </style>
 
@@ -234,14 +243,14 @@
         </div>
     </section>
     <section id="one">
-        <div class="left"><p >Portpolio</p></div>
+        <div class="left"><p >Portfolio</p></div>
         <div class="right"></div>
     </section>
     <section id="two">
         <div class="left"><p>Cabinet</p></div>
         <div class="right"> 
             <div id="list">
-                <h3>할일목록</h3>
+                <h3>목록</h3>
             <!-- window.event.keyCode==13 => enter키 -->
             <!-- onkeyup 속성안에 js 코드를 넣어줌 -->
                 <input type="text" id="item" onkeyup="if(window.event.keyCode==13){addItem()}">
@@ -288,29 +297,29 @@
         var list = document.getElementById('todolist');
         // li 태그를 생성
         var listitem = document.createElement('li');
-        if(todo==""){
-            alert("Nothing");
-        }
-        // alert(todo);
-        else {
-            
-        
-        // input에 있는 할일을 li태그 안에 넣어줌
-        listitem.innerText = todo;
-        // 만들어진 할일(아이템)을 ul태그의 자식으로 append
-        list.appendChild(listitem);
-    
-        var xbtn =document.createElement('button');
-        xbtn.className ="close";
-    
-        xbtn.innerHTML='&times';
-        xbtn.onclick =function(e){
-            var pnode=e.target.parentNode;
-            list.removeChild(pnode);
-            }
-            listitem.appendChild(xbtn);
-        }
        
+            if(todo==""){
+            alert("내용이 없습니다.");
+            }
+        // alert(todo);
+            else {    
+            // input에 있는 할일을 li태그 안에 넣어줌
+                listitem.innerText = todo;
+            // 만들어진 할일(아이템)을 ul태그의 자식으로 append
+                list.appendChild(listitem);
+        
+                var xbtn =document.createElement('button');
+                xbtn.className ="close";
+        
+                xbtn.innerHTML='&times';
+                xbtn.onclick =function(e){
+                    var pnode=e.target.parentNode;
+                    list.removeChild(pnode);
+                }
+                listitem.appendChild(xbtn);
+            }
+            
+   
     
     }
     </script>
