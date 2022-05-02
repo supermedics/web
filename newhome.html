@@ -10,9 +10,7 @@
     <title>home</title>
 </head>
 <style>
-    /* html {
-
-    } */
+    
     body{
         scroll-behavior: smooth;
         font-family: 'Noto Sans KR', sans-serif;       
@@ -65,8 +63,7 @@
         display:flex;
         
     }
-    section p{
-        color: azure;
+    .left p{
         font-size: 10vh;
         padding: 0;
         margin: 0 ;
@@ -89,15 +86,22 @@
         
         align-items: center;
         background: rgb(131,58,180);
-        background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-        
+        background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);   
     }
-    
+    #intro p{
+        color: azure;
+    }
+    #intro .right{
+        justify-content: center;
+    }
     #one{
         
         align-items: center;
         background-color: rgba(131,58,180,1);
         
+    }
+    #one p{
+        color:goldenrod
     }
     
     
@@ -106,7 +110,9 @@
         background-color: rgba(253,29,29,1);
         
     }
-    
+    #two p{
+        color:#5463FF
+    }
 
     #three{
         
@@ -114,7 +120,9 @@
         background-color: rgba(252,176,69,1);
         
     }
-    
+    #three p{
+        color: cadetblue;
+    }
     
     .left{
         width: 50%;
@@ -123,12 +131,12 @@
     }
     
     .right{
-        
+        margin-top: 3em;
         display:flex;
         flex-direction: column;
         align-items: center;
-        justify-items: right;
-        justify-content: center;
+        /* justify-items: right; */
+        /* justify-content: center; */
         overflow: hidden;
         width: 50%;
         height: 100vh;
@@ -164,19 +172,13 @@
     }
 
     button{
+        
         margin: 10px;
         padding: 5px 5px;
         font-size: large;
         font-weight: bold;
     }
-    /* .right table{
-        all:unset;
-        color: #000;
-        height: auto;
-        width: 300px;
-        height: 200px;
-        /* border:1px solid black; */
-        
+   
     
     .table >li{
         margin-top: 10px;
@@ -190,7 +192,20 @@
         gap: 10px;
         color: blue;
     }
-     
+     .sns{
+         height: 50px;
+         width: 50px;
+         margin: 20px;
+     }
+     .contact{
+        margin-top: 3em;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+     }
+    #list input{
+        width: 200px;
+    }
     </style>
 
     
@@ -223,35 +238,79 @@
         <div class="right"></div>
     </section>
     <section id="two">
-        <div class="left"><p >Cabinet</p></div>
-        <div class="right"></div>
+        <div class="left"><p>Cabinet</p></div>
+        <div class="right"> 
+            <div id="list">
+                <h3>할일목록</h3>
+            <!-- window.event.keyCode==13 => enter키 -->
+            <!-- onkeyup 속성안에 js 코드를 넣어줌 -->
+                <input type="text" id="item" onkeyup="if(window.event.keyCode==13){addItem()}">
+                <button onclick="addItem()">추가</button>
+                <ul id="todolist">
+                </ul>
+        </div>
+        </div>
     </section>
     <section id="three">
         <div class="left"><p >Contact</p></div>
         <div class="right">
-            <h3>남기고 싶은 말을 적어 주세요</h3>
-            <div><textarea name="memo" id="memo" cols="90" rows="20"></textarea></div>
-            <div><button>저장</button></div>
-            <ul style="list-style: none;margin: 0;padding: 0;"> 
-                <li>전화번호: 010-0000-0000</li>
-                <li>주소: 부산시 해운대구</li>
-            </ul>
+            
+            <div class="contact">
+                <h3>남기고 싶은 말을 적어 주세요</h3>
+                <textarea name="memo" id="memo" cols="90" rows="20"></textarea>
+                <button>저장</button>
+            
             <div class="link" >
-                <a href="">facebook</a>
-                <a href="">twitter</a>
-                <a href="">instagram</a>
-                <a href="">youtube</a>
+                <a href=""><img src="img/페이스북.png"class="sns"></a>
+                <a href=""><img src="img/트위터1.png" class="sns"></a>
+                <a href=""><img src="img/인스타그램1.png" class="sns"></a>
+                <a href=""><img src="img/유튜브1.png" class="sns"></a>
             </div>
- 
+            <ul style="list-style: none;margin: 0;padding: 0;"> 
+                <li>Phone: 010-0000-0000</li>
+                <li>adress: OO OO</li>
+            </ul>
+            </div>
         </div>
 
     </section>
     <footer>
 
     </footer>
-
-    
-
-    
 </body>
 </html>
+<script>
+    function addItem() {        
+        // input value 를 todo변수에 저장
+        
+        var todo = document.getElementById('item').value;
+        // ul 태그를 list변수에 저장
+        var list = document.getElementById('todolist');
+        // li 태그를 생성
+        var listitem = document.createElement('li');
+        if(todo==""){
+            alert("Nothing");
+        }
+        // alert(todo);
+        else {
+            
+        
+        // input에 있는 할일을 li태그 안에 넣어줌
+        listitem.innerText = todo;
+        // 만들어진 할일(아이템)을 ul태그의 자식으로 append
+        list.appendChild(listitem);
+    
+        var xbtn =document.createElement('button');
+        xbtn.className ="close";
+    
+        xbtn.innerHTML='&times';
+        xbtn.onclick =function(e){
+            var pnode=e.target.parentNode;
+            list.removeChild(pnode);
+            }
+            listitem.appendChild(xbtn);
+        }
+       
+    
+    }
+    </script>
