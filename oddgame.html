@@ -57,20 +57,23 @@
 </body>
 </html>
 <script>
-    var number=0;
-    var user_num;
-    var money;
-    var count=0;
-    function bett(money){
+    let number=0;
+    let user_num;
+    let money=0;
+    let count=0;
+    function bett( ){
         count=0;
         // parseInt => input value 를 숫자로 변환
         money= parseInt(document.getElementById('bett').value);
 
         if(isNaN(money)){
             alert("베팅값을 넣어 주세요");
-
+            
+        }else if( money<50000){    
+            alert("5만원이상 베팅해 주세요");
+            
         }else{
-            console.log(money);
+            
             document.getElementById("bett_value").innerHTML ="초기배팅값"+ money+"원"+"베팅";
         
             
@@ -78,19 +81,22 @@
     }
 
     function playing(user_num) {
+
+        console.log(money);
         if (money<50000){
             alert("5만원이상 베팅해 주세요");
+            count=0;
         }
         else{
         number=Math.floor(Math.random()*100);
-        // console.log(number);
+        
         number=number%2;
         console.log(number);
         // console.log(money);
         if(count<9){
            if (number==user_num){
                 money=money+50000;
-                // document.getElementsByClassName("section").style.bagroundimage="./img/celebrit.jpg";
+                imgChange();
                 count++;
             
             }else{
@@ -114,6 +120,12 @@
 
         }
     }
+
+    function imgChange(){
+
+            document.getElementById("container").style.backgroundImage = "/img/celerbrity.jpg";
+        }
+
     function  reset(){
         money=0;
         count=0;
