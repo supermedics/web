@@ -28,10 +28,38 @@
             justify-content: center;
             border: 1px solid black;
             height: 100px;
-            width: 100px; 
+            width: 100px;
+            filter: blur(1px);
+            font-weight: bolder;
         }
         .button:hover{
-            filter: blur(1px);
+            
+            font-size: xx-large;
+            filter: blur(0);
+        }
+        #odd{ 
+            background-color: blue;
+            color: aliceblue;
+            
+        }
+        #even{ 
+            background-color: red;
+            
+        }
+        .comment{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #count{
+            padding: 10px;
+            border: 1px black solid;
+            width: fit-content;
+        }
+        #Now_value{
+            font-size: xx-large;
+            color: crimson;
         }
     </style>
 
@@ -40,14 +68,15 @@
     <header>
         <h2>홀짝게임</h2>
         <div class="batting">
-        <input type="number" id="bett" class="bett" value="0"  ><button  onclick="bett()" value="베팅" class="bett">베팅</button>
+        <input type="number" id="bett" class="bett" value="0" onkeyup="enterkey()" ><button  onclick="bett()" value="베팅" class="bett">베팅</button>
         </div>
-        <h3 class="choice">선택하세요</h3>
-        <h4 class="choice">1회 승리당 5만원, 지면 -5만원</h4>
-        <h4 class="choice" id="bett_value"></h4>
-        <h4 class="choice" >남은돈 <b id="Now_value"> </b>  원</h4>
-        <h4 class="choice" id="count"></h4>
-
+        <div class="comment">
+            <h3 class="choice">선택하세요</h3>
+            <h4 class="choice">1회 승리당 5만원, 지면 -5만원</h4>
+            <h4 class="choice" id="bett_value"></h4>
+            <h4 class="choice" >남은돈 <b id="Now_value"> </b>  원</h4>
+            <h4 class="choice" id="count">빅찬스</h4>
+        </div>
     </header>
     <section class="container">
         <button class="button" id="odd" onclick="playing(1)">홀</button>
@@ -79,6 +108,11 @@
             
         }
     }
+    function enterkey() {
+	if (window.event.keyCode == 13) {
+    	bett();// 엔터키가 눌렸을 때
+    }
+}      
 
     function playing(user_num) {
 
@@ -96,7 +130,7 @@
         if(count<9){
            if (number==user_num){
                 money=money+50000;
-                imgChange();
+                // imgChange();
                 count++;
             
             }else{
@@ -116,7 +150,7 @@
         // console.log(money);
         
         document.getElementById("Now_value").innerText= money ;
-        document.getElementById("count").innerHTML="10회마다"+"<h3>"+ count+"회</h3> "+"이기면 5배 지면 올인";
+        document.getElementById("count").innerHTML="<h3>"+ count+"회</h3> "+"10회마다"+"이기면 5배 지면 올인";
 
         }
     }
@@ -134,4 +168,5 @@
         document.getElementById("Now_value").innerHTML= money;
         document.getElementById("count").innerHTML="10회마다"+"<h3>"+ count+"회</h3> "+"이기면 5배 지면 올인";
     }
+    
 </script>
