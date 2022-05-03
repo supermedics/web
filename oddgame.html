@@ -40,7 +40,7 @@
     <header>
         <h2>홀짝게임</h2>
         <div class="batting">
-        <input type="number" id="bett" class="bett"  ><button  onclick="bett()" value="베팅" class="bett">베팅</button>
+        <input type="number" id="bett" class="bett" value="0"  ><button  onclick="bett()" value="베팅" class="bett">베팅</button>
         </div>
         <h3 class="choice">선택하세요</h3>
         <h4 class="choice">1회 승리당 5만원, 지면 -5만원</h4>
@@ -59,19 +59,22 @@
 <script>
     var number=0;
     var user_num;
-    var money=0;
+    var money;
     var count=0;
-    function bett(){
-        money=0;
+    function bett(money){
         count=0;
         // parseInt => input value 를 숫자로 변환
-        
         money= parseInt(document.getElementById('bett').value);
-        if(money==""){
-            alert("베팅값을 넣어 주세요")            
+
+        if(isNaN(money)){
+            alert("베팅값을 넣어 주세요");
+
+        }else{
+            console.log(money);
+            document.getElementById("bett_value").innerHTML ="초기배팅값"+ money+"원"+"베팅";
+        
+            
         }
-        console.log(money);
-        document.getElementById("bett_value").innerHTML ="초기배팅값"+ money+"원"+"베팅";
     }
 
     function playing(user_num) {
@@ -87,6 +90,7 @@
         if(count<9){
            if (number==user_num){
                 money=money+50000;
+                // document.getElementsByClassName("section").style.bagroundimage="./img/celebrit.jpg";
                 count++;
             
             }else{
