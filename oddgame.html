@@ -28,8 +28,7 @@
             justify-content: center;
             border: 1px solid black;
             height: 100px;
-            width: 100px;
-            
+            width: 100px; 
         }
         .button:hover{
             filter: blur(1px);
@@ -40,12 +39,83 @@
 <body>
     <header>
         <h2>홀짝게임</h2>
-        <input type="number" id="bett" class="bett" maxlength="1000000"><button value="베팅" class="bett">베팅</button>
+        <div class="batting">
+        <input type="number" id="bett" class="bett"  ><button  onclick="bett()" value="베팅" class="bett">베팅</button>
+        </div>
         <h3 class="choice">선택하세요</h3>
+        <h4 class="choice">1회 승리당 5만원, 지면 -5만원</h4>
+        <h4 class="choice" id="bett_value"></h4>
+        <h4 class="choice" >남은돈 <b id="Now_value"> </b>  원</h4>
+        <h4 class="choice" id="count"></h4>
+
     </header>
     <section class="container">
-        <button class="button" id="odd" onclick="">홀</button>
-        <button class="button" id="even" onclick="">짝</button>
+        <button class="button" id="odd" onclick="playing(1)">홀</button>
+        <button class="button" id="even" onclick="playing(0)">짝</button>
+        <button class="button" id="reset" onclick="reset()">초기화</button>
     </section>
 </body>
 </html>
+<script>
+    var number=0;
+    var user_num;
+    var money=0;
+    var count=0;
+    function bett(){
+        money=0;
+        count=0;
+        // parseInt => input value 를 숫자로 변환
+        
+        money= parseInt(document.getElementById('bett').value);
+        if(money==""){
+            alert("베팅값을 넣어 주세요")            
+        }
+        console.log(money);
+        document.getElementById("bett_value").innerHTML ="초기배팅값"+ money+"원"+"베팅";
+    }
+
+    function playing(user_num) {
+        if (money<50000){
+            alert("5만원이상 베팅해 주세요");
+        }
+        else{
+        number=Math.floor(Math.random()*100);
+        // console.log(number);
+        number=number%2;
+        console.log(number);
+        // console.log(money);
+        if(count<9){
+           if (number==user_num){
+                money=money+50000;
+                count++;
+            
+            }else{
+                money=money-50000;
+                count++;
+            }
+        } else{
+            if (number==user_num){
+                money=money*5;
+                count=0;
+            }else{
+                money=0;
+                count=0;
+            }
+
+        }
+        // console.log(money);
+        
+        document.getElementById("Now_value").innerText= money ;
+        document.getElementById("count").innerHTML="10회마다"+"<h3>"+ count+"회</h3> "+"이기면 5배 지면 올인";
+
+        }
+    }
+    function  reset(){
+        money=0;
+        count=0;
+        document.getElementById('bett').value=null;
+        document.getElementById("bett_value").innerHTML= money+"원"+" 베팅";
+        document.getElementById("Now_value").innerHTML= money;
+        document.getElementById("count").innerHTML="10회마다"+"<h3>"+ count+"회</h3> "+"이기면 5배 지면 올인";
+    }
+</script>
