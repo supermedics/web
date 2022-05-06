@@ -16,13 +16,26 @@
         .bett button{
             padding: 2px,0;
         }
+        .img_frame{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image{
+            position: relative;
+        }
+        .image p{
+            display: none;
+            font-size: xx-large;
+            text-align: center;
+            background-color: chocolate;
+        }
         .container{
             display: flex;
             flex-direction: row;
             justify-content: center;
-            gap: 10px; 
-            
-        }
+            gap: 10px;   
+            }
         .button{
             text-align: center;
             justify-content: center;
@@ -78,11 +91,21 @@
             <h4 class="choice" id="count">빅찬스</h4>
         </div>
     </header>
+    <section class="img_frame">
+        <div id="image" class="image" >
+            <p id="Win">Winnig</p>
+        </div>
+</section>
     <section class="container">
         <button class="button" id="odd" onclick="playing(1)">홀</button>
         <button class="button" id="even" onclick="playing(0)">짝</button>
+    <div class="sub">
         <button class="button" id="reset" onclick="reset()">초기화</button>
+        <button class="button" id="img" onclick="imgChange()">배경화면</button>
+        <button class="button" id="imgremove" onclick="show()">이미지</button>
+    </div>
     </section>
+    
 </body>
 </html>
 <script>
@@ -97,20 +120,21 @@
 
         if(isNaN(money)){
             alert("베팅값을 넣어 주세요");
+            return money;
             
         }else if( money<50000){    
             alert("5만원이상 베팅해 주세요");
-            
+            return money;
         }else{
             
             document.getElementById("bett_value").innerHTML ="초기배팅값"+ money+"원"+"베팅";
-        
             
         }
     }
     function enterkey() {
 	if (window.event.keyCode == 13) {
     	bett();// 엔터키가 눌렸을 때
+        
     }
 }      
 
@@ -127,23 +151,27 @@
         number=number%2;
         console.log(number);
         // console.log(money);
+        
         if(count<9){
            if (number==user_num){
                 money=money+50000;
-                // imgChange();
+                //imgChange();
                 count++;
-            
+                
             }else{
                 money=money-50000;
                 count++;
+                
             }
         } else{
             if (number==user_num){
                 money=money*5;
                 count=0;
+                
             }else{
                 money=0;
                 count=0;
+                
             }
 
         }
@@ -156,9 +184,32 @@
     }
 
     function imgChange(){
+        let img = document.createElement("img"); 
+        img.src = "./img/celerbity.jpg";        
+        let div = document.querySelector("header");
+        console.log(div);
+    //    var div = document.getElementsByClassName("image")[0];
+    //    console.log(div);
+        div.appendChild(img);
+        return 0;
+    }
+    // function show(){
+    //     // let target = document.getElementById('#image');
 
-            document.getElementById("container").style.backgroundImage = "/img/celerbrity.jpg";
-        }
+    //     // let src = target.innerHTML;
+    //     // console.log( src );
+    //     // let extractedText = src.replace(extractTextPattern,'');
+    //     // console.log( extractedText );
+    //     if (a=1){
+    //         document.getElementById("image").style.display = "none";
+    //         return 0;}
+    //     else{
+    //         document.getElementById("image").style.display = "block"}
+    //         return 1;
+    //     }
+
+
+    // }
 
     function  reset(){
         money=0;
@@ -168,5 +219,6 @@
         document.getElementById("Now_value").innerHTML= money;
         document.getElementById("count").innerHTML="10회마다"+"<h3>"+ count+"회</h3> "+"이기면 5배 지면 올인";
     }
+    
     
 </script>
