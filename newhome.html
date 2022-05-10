@@ -129,10 +129,10 @@ html{
     }
     #item{
         width: 500px;
-        height: 32px;
-        font-size: 15px;
+        height: 35px;
+        font-size: 18px;
         border: 0;
-        border-radius: 15px;
+        border-radius: 10%;
         outline: none;
         padding-left: 10px;
         background-color: rgb(233, 233, 233);
@@ -147,15 +147,21 @@ html{
     #list{
         margin-top: 3em;
     }
-    #list >button{
-        margin-left: 10px;
+    button{
+        margin: 10px;
         padding: 5px;
-        
+        border: none;
+        border-radius: 10%;
+        color: rgb(36, 33, 33);
     }
     #todolist li{
         list-style: none;
         padding-top:5px;  
     }
+    #todolist button{
+        padding: 0 3px;
+    }
+    
 
 /* three */
 
@@ -243,6 +249,13 @@ html{
          display: flex;
          flex-direction: column;
          align-items: center;
+     }
+     .contact #memo{
+         height: 50vh;
+         width: 40vw;
+         border:none;
+         border-radius: 10%;
+
      }
     .link{
          display: flex;
@@ -356,7 +369,7 @@ html{
                 alert("허용 갯수를 넘었습니다.9개 이하");
             }else{
                 // input에 있는 할일을 li태그 안에 넣어줌
-                listitem.innerHTML = '<input type=checkbox></input>'+" "+todo;                
+                listitem.innerHTML = '<input type=checkbox ></input>'+" "+todo;                
                 document.getElementById('item').value="";
             // 만들어진 할일(아이템)을 ul태그의 자식으로 append
                 list.appendChild(listitem);
