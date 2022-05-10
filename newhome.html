@@ -10,13 +10,17 @@
     <title>home</title>
 </head>
 <style>
-    
+/* top and header */
+html{
+    scroll-behavior: smooth;
+}
     body{
-        scroll-behavior: smooth;
+        
         font-family: 'Noto Sans KR', sans-serif;       
         margin: 0;
         width: 100%;
         height: 100%;
+        
     }
     header{
         z-index: 10000;
@@ -52,6 +56,8 @@
         font-size:x-large;
         transition: width 0.5s;
     }
+
+    /* common */
     section{
         
         width:100%;
@@ -61,12 +67,17 @@
         /* font-size: 0px; */
         position: relative;
         display:flex;
-        
+        justify-content: center;   
+
     }
+
     .left p{
         font-size: 10vh;
         padding: 0;
         margin: 0 ;
+        }
+    
+    section:hover .left p{    
         animation-duration:3s ;        
         animation-name: slidein;
         animation-fill-mode: forwards;
@@ -81,7 +92,8 @@
             opacity: 100%;
         }}
 
-        
+/* intro     */
+
     #intro{
         
         align-items: center;
@@ -94,8 +106,7 @@
     #intro .right{
         justify-content: center;
     }
-    #one{
-        
+    #one{    
         align-items: center;
         background-color: rgba(131,58,180,1);
         
@@ -103,45 +114,80 @@
     #one p{
         color:goldenrod
     }
-    
-    
+
+    /* two     */
+
     #two{   
         align-items: center;
         background-color: rgba(253,29,29,1);
-        
     }
     #two p{
         color:#5463FF
     }
+    #list h3{
+        text-align: center;
+    }
+    #item{
+        width: 500px;
+        height: 32px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 15px;
+        outline: none;
+        padding-left: 10px;
+        background-color: rgb(233, 233, 233);
+    }
+    #todolist{
+        margin: 0;
+        padding:0;
+    }
+    #item{
+        height: 25px;
+    }
+    #list{
+        margin-top: 3em;
+    }
+    #list >button{
+        margin-left: 10px;
+        padding: 5px;
+        
+    }
+    #todolist li{
+        list-style: none;
+        padding-top:5px;  
+    }
+
+/* three */
 
     #three{
-        
         align-items: center;
         background-color: rgba(252,176,69,1);
-        
     }
     #three p{
         color: cadetblue;
     }
+    #memo textarea{
+        border: none;
+    }
     
     .left{
+        flex-grow: 1;
         width: 50%;
         justify-items: left;
-
     }
     
     .right{
-        margin-top: 3em;
+        flex-grow: 1;
+        /* margin-top: 3em; */
         display:flex;
         flex-direction: column;
         align-items: center;
         /* justify-items: right; */
-        /* justify-content: center; */
+        /* justify-content: center;  */
         overflow: hidden;
         width: 50%;
         height: 100vh;
         flex-wrap:wrap;
-    
     }
     .right h3{
         font-size: x-large;
@@ -149,7 +195,6 @@
     }
     
     .photo {
-        flex-grow: 1;
         height: 100%;
         width: 100%;
         background: url(../web/img/Nature.jpg) center no-repeat;
@@ -161,31 +206,27 @@
         } 
 
     .text{
-        
         all:unset;
         position: absolute;
         color:gainsboro;
-        font-size: 5vh;
+        font-size: 40px;
         text-align: center;
-        width: 400px;
+        width: 300px;
         font-weight: bold;
     }
 
-    button{
+    #todolist li{
+        margin-left: 20px;
+        font-size: 20px;
+        color: aliceblue;
         
-        margin: 10px;
-        padding: 5px 5px;
-        font-size: large;
-        font-weight: bold;
     }
-   
     
-    .table >li{
-        margin-top: 10px;
-        font-size: larger;
-        height: auto;
-        color: #000;
+    .close{
+        padding: 1px;
+        margin-left: 10px;
     }
+    
     .link>a{
         font-size: larger;
         text-decoration:none ;
@@ -197,28 +238,26 @@
          width: 50px;
          margin: 20px;
      }
-     .contact{
+    .contact{
         margin-top: 3em;
          display: flex;
          flex-direction: column;
          align-items: center;
      }
-    #list input{
-        width: 200px;
-    }
-    #list
-    {
-        text-align: center;
-        /* display: flex;
-        flex-direction: column; */
-    }
-    #list li{
-        text-align:left;
-        border-bottom: #fff solid  1px;
-    }
+    .link{
+         display: flex;
+         flex-direction: row;
+        }
+    /* .btn button{background-color: #5463FF;}    */
+    .btn_up::after{ content:""; position: absolute; left: 48%;top: 60px;width: 50px;height:50px;
+            background-color: #ffffff 0.1;border: 5px solid #ffffff; border-left:none ; border-top:none;
+            transform: translateX(50%) rotate(225deg);
+        }  
+    .btn_down::after{ content:""; position: absolute; left: 48%;bottom: 12px;width: 50px;height:50px;
+            background-color: #ffffff 0.1;border: 5px solid #ffffff; border-left:none ; border-top:none;
+            transform: translateX(50%) rotate(45deg);
+        }
     </style>
-
-    
 <body>
     <header>
         <h3 id="title">Wilde web</h3>
@@ -232,6 +271,7 @@
     </header>
    
     <section  id="intro">
+        
         <div class="left"><p >intro</p></div>
         
         <div class="right">
@@ -242,12 +282,19 @@
             </span>
             
         </div>
+        
+        <a href="#one"><div class="btn_down" ></div></a>
     </section>
     <section id="one">
+        <a href="#intro"><div class="btn_up" ></div></a>
         <div class="left"><p >Portfolio</p></div>
         <div class="right"></div>
+        
+        <a href="#two"><div class="btn_down" ></div></a>
     </section>
+   
     <section id="two">
+        <a href="#one"><div class="btn_up" ></div></a>
         <div class="left"><p>Cabinet</p></div>
         <div class="right"> 
             <div id="list">
@@ -256,16 +303,18 @@
             <!-- onkeyup 속성안에 js 코드를 넣어줌 -->
                 <input type="text" id="item" onkeyup="if(window.event.keyCode==13){addItem()}">
                 <button onclick="addItem()">추가</button>
-                <ul id="todolist" style="border-top: #fff solid 1px;">
-                    
+                <ul id="todolist" >
                 </ul>
         </div>
         </div>
+        
+        <a href="#three"><div class="btn_down" ></div></a>
     </section>
+    
     <section id="three">
+    <a href="#two"><div class="btn_up" ></div></a>
         <div class="left"><p >Contact</p></div>
         <div class="right">
-            
             <div class="contact">
                 <h3>남기고 싶은 말을 적어 주세요</h3>
                 <textarea name="memo" id="memo" cols="90" rows="20"></textarea>
@@ -283,7 +332,7 @@
             </ul>
             </div>
         </div>
-
+        <!-- <a href="#intro"><div class="btn::after" ></div></a> -->
     </section>
     <footer>
 
@@ -291,41 +340,41 @@
 </body>
 </html>
 <script>
-     var count=0;
+   let count=0;
     function addItem() {        
         // input value 를 todo변수에 저장
         
-        var todo = document.getElementById('item').value;
+        let todo = document.getElementById('item').value;
         // ul 태그를 list변수에 저장
-        var list = document.getElementById('todolist');
+        let list = document.getElementById('todolist');
         // li 태그를 생성
-        var listitem = document.createElement('li');
+        let listitem = document.createElement('li');
        
             if(todo==""){
             alert("내용이 없습니다.");
             } else if (count>=9){
-                alert("가득 찼습니다.");
+                alert("허용 갯수를 넘었습니다.9개 이하");
             }else{
                 // input에 있는 할일을 li태그 안에 넣어줌
-                listitem.innerText = todo;
+                listitem.innerHTML = '<input type=checkbox></input>'+" "+todo;                
+                document.getElementById('item').value="";
             // 만들어진 할일(아이템)을 ul태그의 자식으로 append
                 list.appendChild(listitem);
-        
-                var xbtn =document.createElement('button');
+                
+                let xbtn =document.createElement('button');
                 xbtn.className ="close";
         
                 xbtn.innerHTML='&times';
                 xbtn.onclick =function(e){
-                    var pnode=e.target.parentNode;
+                    let pnode=e.target.parentNode;
                     list.removeChild(pnode);
+                    count--;
+                    // console.log(count);
                 }
                 listitem.appendChild(xbtn);
-                count++;                
+                count++;
+                // console.log(count);
             }    
-            
-            
-            
-   
     
     }
     </script>
