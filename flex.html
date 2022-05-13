@@ -9,54 +9,74 @@
     </title>
     
     <style>
+        html{
+            padding:0;
+            margin:0;
+        }
         .con{
-            
-            background-color: aqua;
             display: flex;
-            flex-direction: row;
+            justify-content: center;
+            align-items: center;
             
-
+        }
+        .tabs{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 54px;
+            width: 200px;
+            font-size: 1.25rem;
+            font-weight: 500;
+            border-radius: 99px;
         }
         .item{
-            width: 100px;
-            height: 100px;
-            background-color: chocolate;
-            margin: 0px 5px;
-            /* padding: 10px; */
-            flex: auto;
+            background-color: aqua;
+            min-width: 100px;
+        }
+        #menu1{
+            
+            
+        }
+        #menu2{
+            
+        }
+        #menu3{
+            
+        }
+        #menu4{
+            
+        }
+        #menu5{
+            
+        }
+        .glider {
+        position: absolute;
+        display: flex;
+        height: 54px;
+        width: 200px;
+        background-color: skyblue;
+        z-index: 1;
+        border-radius: 99px; 
+        transition: 0.25s ease-out;
         }
 
-        .item:hover
-        {
-            background-color: blueviolet;
+        @media (max-width: 700px) {
+        .tabs {
+            transform: scale(0.6);
+        }
 
-        }
-        .item:nth-child(1)
-        {
-         flex-grow: 10%;
-        }
-        .item:nth-child(2)
-        {
-            flex-grow: 50%
-        
-        }.item:nth-child(3)
-        {
-            flex-grow: 0;
-            flex-shrink: 1;
-        }.item:nth-child(4)
-        {
-            flex-grow: 0;
-            flex-shrink: 1;
-        }
     </style>
 </head>
 <body>
     <div class="con">
-        <div class="item"><a href="" img="">배너</a></div>
-        <div class="item"><a href="">ㄴ</a> </div>
-        <div class="item"><a href="">3</a></div>
-        <div class="item"><a href="">4</a></div>
-        <div class="item"><a href="">5</a></div>
+        <div class="tabs">
+            <div class="item" id="menu1"><a href="" img="">배너1</a></div>
+            <div class="item" id="menu2"><a href="">2</a> </div>
+            <div class="item" id="menu3"><a href="">3</a></div>
+            <div class="item" id="menu4"><a href="">4</a></div>
+            <div class="item" id="menu5"><a href="">5</a></div>
+            <span class="glider"></span>
+        </div>
     </div>
     <div class="contents"
     

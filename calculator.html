@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        .cal{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 1px solid gray;
+            padding: 15px 5px;
+            width: 530px;
+        }
+        #display{
+            width: 100%;
+            max-width: 500px;
+            height: 80px;
+            border: 1px lightgray solid;
+            font-size: xx-large;
+            color: black;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 10px;
+        }
+        .buttons{
+            margin-top: 10px;
+            max-width: 500px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            font-size:200px;
+            font-weight: bold;
+            border: 1px gray solid;
+            padding: 10px 0;
+            background-color: azure;
+        }
+        button{
+            width:110px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+<div class="cal">
+    <div id="display"></div>
+        <div class="buttons">
+            <button id="%" onclick="operator(13)">%</button><button id="CE">CE</button><button id="c" onclick="clear()">C</button><button id="divide" onclick="operator(13)">÷</button>
+            <button id="7" onclick="number(7)">7</button><button id="8" onclick="number(8)">8</button><button id="9" onclick="number(9)">9</button><button id="*" onclick="operator(12)">×</button>
+            <button id="4" onclick="number(4)">4</button><button id="5" onclick="number(5)">5</button><button id="6" onclick="number(6)">6</button><button id="-" onclick="operator(11)">-</button>
+            <button id="1" onclick="number(1)">1</button  ><button id="2" onclick="number(2)">2</button><button id="3" onclick="number(3)">3</button><button id="+" onclick="operator(10)">+</button>
+            <button id="pm">±</button><button id="0"onclick="number(0)">0</button><button id="dot" onclick="dot()">.</button><button id="solve" onclick="solve()">=</button>
+        </div>
+</div>    
+</body>
+</html>
+<script>
+    const display=0;
+    let num=[];
+    let op=0;
+    let result=0;
+    let num1;
+    let num2;
+    let flag=0;
+    let sumofnum;
+    let key;
+
+    function number(a){
+        let list = document.getElementById('display');
+        let com=document.createElement('p');
+        num.push(a);
+        
+        // console.log(typeof num);
+        com.innerText=a;
+        // console.log(com);
+        list.appendChild(com);
+        // console.log(num.length);
+        makingNum(num);
+    }
+function makingNum(a){
+    let b;
+    let c=0;
+    
+        b =a.join('');
+        c= a.jion('');
+    if(flag===0){    
+        num1=Number(b);
+             console.log("num1 "+num1);
+             console.log(typeof num1);       
+     } else if(flag===1){
+         
+        num2=Number(c);
+            console.log("num2 "+num2);
+            console.log(typeof num2);       
+      }
+    console.log(num1.lenth)
+}
+
+    function dot(){
+        let list =document.getElementById('display');
+            let com=document.createElement('p');
+        
+            com.innerHTML="."
+            list.appendChild(com);
+            
+            num.push(".");
+    }
+    function operator(key){
+        let list =document.getElementById('display');
+            let com=document.createElement('p');
+        if(key===10){
+            com.innerHTML="+";
+            list.appendChild(com);
+            flag=1; 
+        }
+        if(key===11){
+            com.innerHTML="－";
+            list.appendChild(com);
+            num1=Number(num.join(''));
+            flag=1;
+        }
+        if(key===12){
+            com.innerHTML="×";
+            list.appendChild(com);
+            num1=Number(num.join(''));
+            flag=1;
+        }
+        if(key===13){
+            com.innerHTML="÷";
+            list.appendChild(com);
+            num1=Number(num.join(''));
+            flag=1;
+        }
+    }
+    function solve(){
+        let list =document.getElementById('display');
+        let com=document.createElement('p');
+        
+        if(key===10){
+            result=num1+num2;    
+            com.innerHTML=result;
+            list.appendChild(com);
+            flag=0;
+            console.log("result");
+        }
+        if(key===11){
+            result=num1-num2;    
+            com.innerHTML=result;
+            list.appendChild(com);
+            console.log("result");
+            flag=0;
+        }
+        if(key===12){
+            result=num1+num2;    
+            com.innerHTML=result;
+            list.appendChild(com);
+            console.log("result");
+            flag=1;
+        }
+        if(key===13){
+            result=num1+num2;
+            com.innerHTML=result;
+            list.appendChild(com);
+            console.log("result");
+            flag=1;
+        }
+    }
+
+// function backspace(){
+
+// }    
+
+function clear() {
+        let parent=document.querySelector("#display");
+        let child = parent.querySelectorall("p");
+        
+        parent.removeChild(child);
+        // num=[];  
+    }
+</script>

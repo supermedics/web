@@ -255,7 +255,11 @@ html{
         font-size: 20px;
         color: aliceblue;
     }
-    
+    input:checked label{
+        text-decoration: line-through;
+
+    }
+
     #todolist li button{
         height: 20px;
         width: 20px;
@@ -421,14 +425,14 @@ function addItem() {
     // li 태그를 생성
     let listitem = document.createElement('li');
     
-        if(todo==""){
+        if(todo===""){
         alert("내용이 없습니다.");
         } else if (count>=9){
             alert("허용 갯수를 넘었습니다.9개 이하");
         }else{
              display_on('delall');
             // input에 있는 할일을 li태그 안에 넣어줌
-            listitem.innerHTML = '<input type=checkbox name="todo" ></input>'+" "+todo+'<select ><option selected>순위</option><option>1</option><option>2</option><option>3</option></select>';                
+            listitem.innerHTML = '<label><input type=checkbox name="todo" class="todos" >'+todo+'</label>'+'<select ><option selected>순위</option><option>1</option><option>2</option><option>3</option></select>';                
             document.getElementById('item').value="";
         // 만들어진 할일(아이템)을 ul태그의 자식으로 append
             list.appendChild(listitem);
