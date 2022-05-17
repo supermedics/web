@@ -16,7 +16,7 @@
             width: 530px;
         }
         #display{
-            width: 100%;
+            width: 1000%;
             max-width: 500px;
             height: 80px;
             border: 1px lightgray solid;
@@ -24,7 +24,12 @@
             color: black;
             display: flex;
             justify-content: flex-end;
+            align-items: center;
             padding: 0 10px;
+            overflow: hidden;
+        }
+        #display:nth-last-child(0) {
+            margin-right: 30px;
         }
         .buttons{
             margin-top: 10px;
@@ -44,13 +49,60 @@
             width:110px;
             height: 80px;
         }
+        .gg-backspace {
+            box-sizing: border-box;
+            position: absolute;
+            
+            display: block;
+            width: 14px;
+            height: 14px;
+            transform: scale(var(--ggs,1));
+            border: 2px solid;
+            border-left: 0;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px
+        }
+
+        .gg-backspace::after,
+        .gg-backspace::before {
+            content: "";
+            display: block;
+            box-sizing: border-box;
+            position: absolute
+        }
+
+        .gg-backspace::before {
+            background:
+            linear-gradient( to left,
+            currentColor 18px,transparent 0)
+            no-repeat center center/10px 2px;
+            border-right: 3px solid transparent;
+            box-shadow: inset 0 0 0 2px;
+            right: 2px;
+            bottom: 1px;
+            width: 8px;
+            height: 8px;
+            border-left: 3px solid transparent;
+            transform: rotate(45deg)
+        }
+
+        .gg-backspace::after {
+            width: 10px;
+            height: 10px;
+            border-top: 2px solid;
+            border-left: 2px solid;
+            border-top-left-radius: 1px;
+            transform: rotate(-45deg);
+            top: 0;
+            left: -5px
+        } 
     </style>
 </head>
 <body>
 <div class="cal">
-    <div id="display"></div>
+    <div id="display"><button class="gg-backspace" onclick="backspace()"></button></div>
         <div class="buttons">
-            <button id="%" onclick="operator(13)">%</button><button id="CE">CE</button><button id="c" onclick="clear()">C</button><button id="divide" onclick="operator(13)">÷</button>
+            <button id="%" onclick="operator(14)">%</button><button id="CE">CE</button><button id="c" onclick="cleaner()">C</button><button id="divide" onclick="operator(13)">÷</button>
             <button id="7" onclick="number(7)">7</button><button id="8" onclick="number(8)">8</button><button id="9" onclick="number(9)">9</button><button id="*" onclick="operator(12)">×</button>
             <button id="4" onclick="number(4)">4</button><button id="5" onclick="number(5)">5</button><button id="6" onclick="number(6)">6</button><button id="-" onclick="operator(11)">-</button>
             <button id="1" onclick="number(1)">1</button  ><button id="2" onclick="number(2)">2</button><button id="3" onclick="number(3)">3</button><button id="+" onclick="operator(10)">+</button>
@@ -66,13 +118,16 @@
     let result=0;
     let num1;
     let num2;
-    let flag=0;
+    let flag=0;// 0일때 홀수번째 입력 1일 때 짝수 번째 엽력
     let sumofnum;
-    let key;
+    let key=0;
 
+    
+    
     function number(a){
-        let list = document.getElementById('display');
-        let com=document.createElement('p');
+    let list = document.getElementById('display');
+    let com=document.createElement('p');        
+        
         num.push(a);
         
         // console.log(typeof num);
@@ -80,106 +135,155 @@
         // console.log(com);
         list.appendChild(com);
         // console.log(num.length);
+    
         makingNum(num);
+    
     }
 function makingNum(a){
-    let b;
-    let c=0;
+    let b=0;
     
         b =a.join('');
-        c= a.jion('');
+
     if(flag===0){    
         num1=Number(b);
-             console.log("num1 "+num1);
-             console.log(typeof num1);       
-     } else if(flag===1){
-         
-        num2=Number(c);
-            console.log("num2 "+num2);
-            console.log(typeof num2);       
+            //  console.log("num1 "+num1);
+            //  console.log(typeof num1);
+             return ;      
+    }else if(flag===1){
+        num2=Number(b)
+
+        }
       }
-    console.log(num1.lenth)
-}
+
 
     function dot(){
-        let list =document.getElementById('display');
-            let com=document.createElement('p');
+    let list = document.getElementById('display');
+    let com=document.createElement('p');
         
             com.innerHTML="."
             list.appendChild(com);
             
             num.push(".");
     }
-    function operator(key){
-        let list =document.getElementById('display');
-            let com=document.createElement('p');
-        if(key===10){
+
+    function operator(a){
+    let list = document.getElementById('display');
+    let com=document.createElement('p');
+
+    if (flag===0){
+        
+        if(a===10){
             com.innerHTML="+";
             list.appendChild(com);
-            flag=1; 
-        }
-        if(key===11){
+            flag=1;
+            key=10;
+            num=[];
+            return 
+        }else if(a===11){
             com.innerHTML="－";
             list.appendChild(com);
             num1=Number(num.join(''));
             flag=1;
-        }
-        if(key===12){
+            key=11;
+            num=[];
+            return
+        } else if(a===12){
             com.innerHTML="×";
             list.appendChild(com);
             num1=Number(num.join(''));
             flag=1;
-        }
-        if(key===13){
+            key=12
+            num=[];
+            return
+        } else if(a===13){
             com.innerHTML="÷";
             list.appendChild(com);
             num1=Number(num.join(''));
             flag=1;
+            key=13;
+            num=[];
+            return
+        }
+        else{
+            return
         }
     }
+    }
     function solve(){
-        let list =document.getElementById('display');
-        let com=document.createElement('p');
-        
+        if(flag=0){ 
+            return
+        }
+        else{
+    let list = document.getElementById('display');
+    let com=document.createElement('p');
+
+        console.log(num1);
+        console.log(num2);
+        console.log(key);
         if(key===10){
             result=num1+num2;    
-            com.innerHTML=result;
+            com.innerHTML="="+result;
             list.appendChild(com);
             flag=0;
-            console.log("result");
+            console.log(result);
+            console.log(typeof result);
+            return
         }
         if(key===11){
             result=num1-num2;    
-            com.innerHTML=result;
+            com.innerHTML="="+result;
             list.appendChild(com);
-            console.log("result");
+            console.log(result);
+            console.log(typeof result);
             flag=0;
+            return;
         }
         if(key===12){
-            result=num1+num2;    
-            com.innerHTML=result;
+            result=num1*num2;    
+            com.innerHTML="="+result;
             list.appendChild(com);
-            console.log("result");
-            flag=1;
+            console.log(result);
+            console.log(typeof result);
+            flag=0;
+            return;
         }
         if(key===13){
-            result=num1+num2;
-            com.innerHTML=result;
+            result=num1/num2;
+            com.innerHTML="="+result;
             list.appendChild(com);
-            console.log("result");
-            flag=1;
+            console.log(result);
+            console.log(typeof result);
+            flag=0;
+            return;
         }
     }
+    }
 
-// function backspace(){
+function cleaner() {        
+        let node = document.getElementById('#display');
+        // p 태그를 배열로 가져온다
+        let child=document.querySelectorAll('p');
+        // 배열을 foreach 각각의 element 각각 삭제
+        child.forEach((element) => element.remove());
+        console.log('#display');
+        num=[];
+        num1=0;
+        num2=0;
+        flag=0;
+        return;
+    }
+    
 
-// }    
+function backspace() {        
+    let node = document.querySelector('#display');
+    // p 태그를 배열로 가져온다
+    let child=node.querySelectorAll('p');
+    let lastItem=child[child.length-1]
+        lastItem.remove();
+        console.log('#display');
 
-function clear() {
-        let parent=document.querySelector("#display");
-        let child = parent.querySelectorall("p");
-        
-        parent.removeChild(child);
-        // num=[];  
+    if(flag=0){
+
+    }
     }
 </script>
