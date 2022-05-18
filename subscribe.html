@@ -52,11 +52,11 @@
     <div class="table">
         <h2 class="head">회원가입</h2>
             <div class="side">            </div>   
-            <div class="contents">
+            <form class="contents" action="./subscribe.php" method="post">
                 
                 <span>
                     <h3>아이디: </h3>
-                    <input maxlength="20" type="text" id="uid" class="form-control" required onkeyup="chkID()">
+                    <input maxlength="20" name="uid" type="text" id="uid" class="form-control" required onkeyup="chkID()">
                     
                 </span>
                 <span id="uids" style="color: red; display:none"> 5~20자의 영문 소문자, 
@@ -68,7 +68,7 @@
                  <span>
             
                <h3>패스워드 :</h3>
-            <input type="password" id="pw" maxlength="16" class="form-control" required onkeyup="chkpw()"></span>
+            <input type="password" name="pw" id="pw" maxlength="16" class="form-control" required onkeyup="chkpw()"></span>
             <span id="pws" style="color: red; display: none">
                 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
             </span>
@@ -76,7 +76,7 @@
             
             <span>
             <h3>패스워드 확인</h3>
-            <input type="password" id="cpw" required onkeyup="chkcpw()" maxlength="16"></span>
+            <input type="password" name="cpw" id="cpw" required onkeyup="chkcpw()" maxlength="16"></span>
             <span id="pwschk" style="color: red; display: none">
                 비밀번호가 일치하지 않습니다.
             </span>
@@ -85,15 +85,15 @@
             </span>
             
             <h3 >이름: </h3>
-            <span><input type="text" id="name"></span>
+            <span><input type="text" id="name" name="name"></span>
 
             <span>
             <h3>생일: </h3>
-            <input type=text id="birth" maxlength="6" placeholder="생년월일6자리">
+            <input type=text id="birth" name="birth" maxlength="6" placeholder="생년월일6자리">
             </span>
         <div >
             <h3>주 소: </h3>        
-            <input class="form-control" type="text" id="addr"
+            <input class="form-control" name="location" type="text" id="addr"
                 onclick="postcode()" value="주소찾기" readonly>              
             <span id="addre">
                 필수 정보 입니다.
@@ -101,13 +101,13 @@
         </div>
             
             <h3>이메일: </h3>
-            <input type="email" class="form-cntrol" id="email" onkeyup="chkemail()">
+            <input type="email" name="email" class="form-cntrol" id="email" onkeyup="chkemail()">
             <span id="gemail" style="display: none;"> 올바른 이메일 형식입니다. </span>
             <span id="emails" style="display: none;"> 필수 정보 입니다. </span>
             
 
             <h3>성별</h3>
-            <span><select name="sex" id="sex" >
+            <span><select name="sex" id="sex" name="sex">
                     <option value="Male">남자</option>
                     <option value="female">여자</option>
                     <option value="noselect">기타</option>
@@ -115,13 +115,13 @@
             </span>
         
         
-                
-        
+            <input type="submit" class="btn btn-lg btn btn-primary" style="width: 100%;" onclick="">가입하기</button>
+        </form>
         <div class="side"></div>
     
     
 <div class="footer">
-    <button class="btn btn-lg btn btn-primary" style="width: 100%;" onclick="">가입하기</button>
+    
 </div>
     
 </body>

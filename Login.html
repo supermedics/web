@@ -39,7 +39,7 @@
             grid-area: footer;
             background-color: coral;
         }
-
+        
     </style>
     <title>Login</title>
 </head>
@@ -49,12 +49,14 @@
         <div class="left"></div>
         <div class="login">
             <fieldset>
-                <label for="login">ID</label>
-                <input name="login" type="text">
-                <label for="pw">PW</label>
-                <input name="login" type="password">
-                <input type="button" value="Send" onclick="login()">
+                <form action="./login.php" method="post">
+                    <label for="ID"  >ID</label>
+                    <input name="ID" type="text" >
+                    <label for="pw">PW</label>
+                    <input name="pw" type="password">
+                    <input type="submit" value="Send" onclick="">
                 <label type="text"><a href="subscribe.html">회원가입</a></label>
+                </form>
             </fieldset>
         </div>
         <div class="right"> </div>
@@ -67,8 +69,8 @@
     alert("반갑습니다")
 console.log('방갑습니다');
 function login(){
-    var id =document.querySelector(input[name='id']).value;
-    var id =document.querySelector(input[name='id']).value;
+    let id =document.querySelector(input[name='id']).value;
+    let pw =document.querySelector(input[name='pw']).value;
     console.log(id);
     console.log(pw);
     alert("환영합니다.");
